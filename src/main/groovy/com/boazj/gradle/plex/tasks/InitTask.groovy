@@ -13,11 +13,10 @@ class InitTask extends DefaultTask {
     @TaskAction
     void applyLayout() {
         def type = getType()
-        def registry = TemplateRegistry.instance
-        if (!registry.supports(type)) {
-            throw new GradleException("The requested build setup type '${type}' is not supported. Supported types: ${registry.supportedTypes.collect{"'$it'"}.sort().join(", ")}.")
+        if (!TemplateRegistry.supports(type)) {
+            throw new GradleException("The requested build setup type '${type}' is not supported. Supported types: ${TemplateRegistry.supportedTypes.collect{"'$it'"}.sort().join(", ")}.")
         }
-        registry.get(type).generate()
+        TemplateRegistry.get(type).generate()
     }
 
     public String getType() {
@@ -31,6 +30,6 @@ class InitTask extends DefaultTask {
 
     @OptionValues("type")
     List<String> getAvailableBuildTypes(){
-        return TemplateRegistry.instance.supportedTypes
+        return TemplateRegistry.supportedTypes
     }
 }

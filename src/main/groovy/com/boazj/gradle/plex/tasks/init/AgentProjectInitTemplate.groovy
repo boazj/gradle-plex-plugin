@@ -1,15 +1,15 @@
 package com.boazj.gradle.plex.tasks.init
 
-class AgentProjectInitTemplate implements Template {
+class AgentProjectInitTemplate extends Template {
+    public static final String AGENT = 'agent'
 
     @Override
     boolean supports(String id) {
-        return Template.AGENT == id
+        return AGENT == id
     }
 
     void generate(){
-        String s = File.separator
-        new File("Contents${s}Code").mkdirs()
-        new File("Contents${s}Resources").mkdirs()
+        mkdirs( "Contents/Code",
+                "Contents/Resources")
     }
 }

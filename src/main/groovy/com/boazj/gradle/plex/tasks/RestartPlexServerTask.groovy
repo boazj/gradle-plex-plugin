@@ -1,10 +1,9 @@
 package com.boazj.gradle.plex.tasks
 
-import com.boazj.gradle.plex.tasks.plex.OsStrategy
-import org.gradle.api.DefaultTask
+import com.boazj.gradle.plex.tasks.platform.OsStrategy
 import org.gradle.api.tasks.TaskAction
 
-class RestartPlexServerTask extends DefaultTask {
+class RestartPlexServerTask extends BasePlexPlatformTask {
 
     @TaskAction
     void restartPlexServer(){

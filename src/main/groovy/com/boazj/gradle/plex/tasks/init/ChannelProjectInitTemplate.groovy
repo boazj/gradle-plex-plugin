@@ -1,18 +1,18 @@
 package com.boazj.gradle.plex.tasks.init
 
-class ChannelProjectInitTemplate implements Template {
+class ChannelProjectInitTemplate extends Template {
+    public static final String CHANNEL = 'channel'
 
     @Override
     boolean supports(String id) {
-        return Template.CHANNEL == id
+        return CHANNEL == id
     }
 
-    void generate(){
-        String s = File.separator
-        new File("Contents${s}Code").mkdirs()
-        new File("Contents${s}Resources").mkdirs()
-        new File("Contents${s}Strings").mkdirs()
-        new File("Contents${s}Libraries${s}Shared").mkdirs()
-        new File("Contents${s}Services${s}URL").mkdirs()
+    void generate() {
+        mkdirs( "Contents/Code",
+                "Contents/Resources",
+                "Contents/Strings",
+                "Contents/Libraries/Shared",
+                "Contents/Services/URL")
     }
 }

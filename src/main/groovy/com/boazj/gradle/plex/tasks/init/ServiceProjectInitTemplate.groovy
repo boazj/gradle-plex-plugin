@@ -1,15 +1,15 @@
 package com.boazj.gradle.plex.tasks.init
 
-class ServiceProjectInitTemplate implements Template {
+class ServiceProjectInitTemplate extends Template {
+    public static final String SERVICE = 'service'
 
     @Override
     boolean supports(String id) {
-        return Template.SERVICE == id
+        return SERVICE == id
     }
 
     void generate(){
-        String s = File.separator
-        new File("Contents${s}Service Sets").mkdirs()
-        new File("Contents${s}Resources").mkdirs()
+        mkdirs( "Contents/Service Sets",
+                "Contents/Resources")
     }
 }

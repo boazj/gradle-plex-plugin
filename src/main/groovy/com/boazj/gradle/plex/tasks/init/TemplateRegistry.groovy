@@ -1,28 +1,23 @@
 package com.boazj.gradle.plex.tasks.init
 
-@Singleton
 class TemplateRegistry {
-    public static final String AGENT = 'agent'
-    public static final String CHANNEL = 'channel'
-    public static final String SCANNER = 'scanner'
-    public static final String SERVICE = 'service'
 
-    private Map<String, Template> templates = [
-            AGENT, new AgentProjectInitTemplate(),
-            CHANNEL, new ChannelProjectInitTemplate(),
-            SCANNER, new ScannerProjectInitTemplate(),
-            SERVICE, new ServiceProjectInitTemplate()
+    private static Map<String, Template> templates = [
+            (AgentProjectInitTemplate.AGENT) : (new AgentProjectInitTemplate()),
+            (ChannelProjectInitTemplate.CHANNEL) : (new ChannelProjectInitTemplate()),
+            (ScannerProjectInitTemplate.SCANNER) : (new ScannerProjectInitTemplate()),
+            (ServiceProjectInitTemplate.SERVICE) : (new ServiceProjectInitTemplate())
     ]
 
-    Template get(String id) {
+    static Template get(String id) {
         return templates.get(id)
     }
 
-    Set<String> getSupportedTypes(){
+    static Set<String> getSupportedTypes(){
         return templates.keySet()
     }
 
-    boolean supports(String id){
+    static boolean supports(String id){
         return templates.containsKey(id)
     }
 }

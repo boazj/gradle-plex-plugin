@@ -1,14 +1,14 @@
 package com.boazj.gradle.plex.tasks.init
 
-class ScannerProjectInitTemplate implements Template {
+class ScannerProjectInitTemplate extends Template {
+    public static final String SCANNER = 'scanner'
 
     @Override
     boolean supports(String id) {
-        return Template.SCANNER == id
+        return SCANNER == id
     }
 
     void generate(){
-        String s = File.separator
-        new File("Contents${s}Resources").mkdirs()
+        mkdirs("Contents/Resources")
     }
 }

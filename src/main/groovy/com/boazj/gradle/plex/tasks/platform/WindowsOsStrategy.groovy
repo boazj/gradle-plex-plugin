@@ -1,4 +1,4 @@
-package com.boazj.gradle.plex.tasks.plex
+package com.boazj.gradle.plex.tasks.platform
 
 import com.boazj.gradle.plex.utils.GroovyExecutor
 
