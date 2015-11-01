@@ -1,25 +1,23 @@
 package com.boazj.gradle.plex.tasks.platform
 
-import com.boazj.gradle.plex.utils.GroovyExecutor
-
 class WindowsOsStrategy extends OsStrategy {
 
     @Override
     void plexStop() {
         //TODO:
-        new GroovyExecutor(true).execute([])
+        getExecutors().get(true).execute([])
     }
 
     @Override
     void plexStart() {
         //TODO:
-        new GroovyExecutor(true).execute([])
+        getExecutors().get(true).execute([])
     }
 
     @Override
     void plexRestart() {
         //TODO:
-        new GroovyExecutor(true).execute([])
+        getExecutors().get(true).execute([])
     }
 
     @Override

@@ -1,22 +1,25 @@
 package com.boazj.gradle.plex.tasks.platform
 
-import com.boazj.gradle.plex.utils.GroovyExecutor
-
 class MacOsStrategy extends OsStrategy {
+
+
+    public static final ArrayList<String> STOP_CMD = ['killall', 'Plex Media Server']
+    public static final ArrayList<String> START_CMD = ['open', '/Applications/Plex Media Server.app']
+    public static final ArrayList<String> RESTART_CMD = ['killall', 'Plex Media Server', ';', 'sleep', '5', ';', 'open', '/Applications/Plex Media Server.app']
 
     @Override
     void plexStop() {
-        new GroovyExecutor(true).execute(['killall', 'Plex Media Server'])
+        getExecutors().get(true).execute(STOP_CMD)
     }
 
     @Override
     void plexStart() {
-        new GroovyExecutor(true).execute(['open', '/Applications/Plex Media Server.app'])
+        getExecutors().get(true).execute(START_CMD)
     }
 
     @Override
     void plexRestart() {
-        new GroovyExecutor(true).execute(['killall', 'Plex Media Server', ';', 'sleep', '5', ';', 'open', '/Applications/Plex Media Server.app'])
+        getExecutors().get(true).execute(RESTART_CMD)
     }
 
     @Override

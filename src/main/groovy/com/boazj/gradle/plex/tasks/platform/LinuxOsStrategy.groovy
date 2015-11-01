@@ -1,22 +1,24 @@
 package com.boazj.gradle.plex.tasks.platform
 
-import com.boazj.gradle.plex.utils.GroovyExecutor
-
 public class LinuxOsStrategy extends OsStrategy {
+    public static final ArrayList<String> STOP_CMD = ['sudo', '/etc/init.d/plexmediaserver', 'start']
+    public static final ArrayList<String> START_CMD = ['sudo', '/etc/init.d/plexmediaserver', 'stop']
+    public static final ArrayList<String> RESTART_CMD = ['sudo', '/etc/init.d/plexmediaserver', 'restart']
+
 
     @Override
     void plexStop() {
-        new GroovyExecutor(true).execute(['sudo', '/etc/init.d/plexmediaserver', 'start'])
+        getExecutors().get(true).execute(STOP_CMD)
     }
 
     @Override
     void plexStart() {
-        new GroovyExecutor(true).execute(['sudo', '/etc/init.d/plexmediaserver', 'stop'])
+        getExecutors().get(true).execute(START_CMD)
     }
 
     @Override
     void plexRestart() {
-        new GroovyExecutor(true).execute(['sudo','/etc/init.d/plexmediaserver', 'restart'])
+        getExecutors().get(true).execute(RESTART_CMD)
     }
 
     @Override
@@ -33,4 +35,6 @@ public class LinuxOsStrategy extends OsStrategy {
     String getPluginsPath() {
         return '/var/lib/plexmediaserver/Library/Application Support/Plex Media Server/Plug-ins/'
     }
+
+
 }
