@@ -1,0 +1,12 @@
+apply plugin: 'base'
+apply plugin: 'com.boazj.plex'
+
+buildscript {
+    repositories {
+        mavenLocal()
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.boazj.gradle:gradle-plex-plugin:0.1.0-SNAPSHOT'
+    }
+}

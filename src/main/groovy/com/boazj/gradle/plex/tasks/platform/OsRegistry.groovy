@@ -14,16 +14,15 @@ class OsRegistry {
                                            (WINDOWS): WindowsOsStrategy]
     Closure<String> getPlatform = {
         if (SystemUtils.IS_OS_MAC) {
-            MAC
+            return MAC
         }
         if (SystemUtils.IS_OS_LINUX) {
-            LINUX
+            return LINUX
         }
         if (SystemUtils.IS_OS_WINDOWS) {
-            WINDOWS
+            return WINDOWS
         }
     }
-
 
     public OsStrategy get() {
         if (override != null) {

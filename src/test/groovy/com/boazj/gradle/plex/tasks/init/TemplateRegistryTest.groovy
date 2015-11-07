@@ -2,24 +2,22 @@ package com.boazj.gradle.plex.tasks.init
 
 import org.junit.Test
 
-import static org.junit.Assert.assertEquals
-import static org.junit.Assert.assertFalse
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*
 
 class TemplateRegistryTest {
 
     @Test
     void testGet() {
-        assertTrue(TemplateRegistry.get(AgentProjectInitTemplate.AGENT) instanceof AgentProjectInitTemplate)
-        assertTrue(TemplateRegistry.get(ChannelProjectInitTemplate.CHANNEL) instanceof ChannelProjectInitTemplate)
-        assertTrue(TemplateRegistry.get(ScannerProjectInitTemplate.SCANNER) instanceof ScannerProjectInitTemplate)
-        assertTrue(TemplateRegistry.get(ServiceProjectInitTemplate.SERVICE) instanceof ServiceProjectInitTemplate)
-        assertEquals(null, TemplateRegistry.get('fake'))
+        assertTrue(TemplateRegistry.instance.get(AgentProjectInitTemplate.AGENT) instanceof AgentProjectInitTemplate)
+        assertTrue(TemplateRegistry.instance.get(ChannelProjectInitTemplate.CHANNEL) instanceof ChannelProjectInitTemplate)
+        assertTrue(TemplateRegistry.instance.get(ScannerProjectInitTemplate.SCANNER) instanceof ScannerProjectInitTemplate)
+        assertTrue(TemplateRegistry.instance.get(ServiceProjectInitTemplate.SERVICE) instanceof ServiceProjectInitTemplate)
+        assertEquals(null, TemplateRegistry.instance.get('fake'))
     }
 
     @Test
     void testGetSupportedTypes() {
-        Set<String> supportedTypes = TemplateRegistry.getSupportedTypes()
+        Set<String> supportedTypes = TemplateRegistry.instance.getSupportedTypes()
         assertEquals(4, supportedTypes.size())
         assertTrue(supportedTypes.contains(AgentProjectInitTemplate.AGENT))
         assertTrue(supportedTypes.contains(ChannelProjectInitTemplate.CHANNEL))
@@ -32,7 +30,7 @@ class TemplateRegistryTest {
         [AgentProjectInitTemplate.AGENT,
          ChannelProjectInitTemplate.CHANNEL,
          ScannerProjectInitTemplate.SCANNER,
-         ServiceProjectInitTemplate.SERVICE].each { assertTrue(TemplateRegistry.supports(it)) }
-        assertFalse(TemplateRegistry.supports('fake'))
+         ServiceProjectInitTemplate.SERVICE].each { assertTrue(TemplateRegistry.instance.supports(it)) }
+        assertFalse(TemplateRegistry.instance.supports('fake'))
     }
 }
