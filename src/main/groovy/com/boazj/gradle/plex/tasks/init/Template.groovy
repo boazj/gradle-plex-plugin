@@ -10,7 +10,11 @@ abstract class Template {
     void mkdirs(String... paths) {
         File parent = this.parent
         paths.each {
-            new File(parent, it.replaceAll('/', File.separator)).mkdirs()
+            String path = it.replaceAll('/', File.separator)
+            if (parent != null) {
+                return new File(parent, path).mkdirs()
+            }
+            return new File(path).mkdirs()
         }
     }
 

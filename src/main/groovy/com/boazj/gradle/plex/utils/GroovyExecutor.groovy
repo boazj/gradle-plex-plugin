@@ -2,6 +2,8 @@ package com.boazj.gradle.plex.utils
 
 class GroovyExecutor implements ShellExecutor{
 
+    public static String NL = System.getProperty("line.separator")
+
     private boolean printOut
     private boolean executed = false
 
@@ -40,7 +42,7 @@ class GroovyExecutor implements ShellExecutor{
         }
 
         process.waitFor()
-        resultText = printOut ? (out <<= err).toString() : process.text
+        resultText = printOut ? (out + NL + err).toString() : process.getText()
         resultStdOut = printOut ? out.toString() : resultText
         resultStdErr = printOut ? err.toString() : ''
         resultValue = process.exitValue()
@@ -61,5 +63,9 @@ class GroovyExecutor implements ShellExecutor{
 
     String getResultStdOut() {
         return resultStdOut
+    }
+
+    boolean getPrintOut() {
+        return printOut
     }
 }
